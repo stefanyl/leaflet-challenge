@@ -8,3 +8,24 @@ body,
 html {
   height: 100%;
 }
+
+.Legend
+{
+  background-color: white;
+  width: 100px;
+
+}
+
+i
+{
+  display: inline-block;
+  width: 50px;
+  margin-left: 5px;
+  margin-right: 5px
+
+}
+
+h2
+{
+  font-size: 15px;
+}

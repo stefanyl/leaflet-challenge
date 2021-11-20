@@ -1,8 +1,3 @@
-// Selected "All Earthquakes in Past 30 Days"
-var baseURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
-
-//Store API query variables
-var mag = "$"
 // Create map object
 var myMap = L.map("map", {
   center: [37.09, -95.71],
@@ -20,10 +15,17 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: API_KEY
 }).addTo(myMap);
 
+// Selected "All Earthquakes in Past 30 Days"
+var baseUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
+
+//Store API query variables
+//var mag = "magnitude"
+//var 
+
 // Grab data
-d3.json(url).then(function(data) {
+d3.json(baseUrl).then(function(response) {
   // Once we get response
-  createFeatures(data.features);
+  createFeatures(response.features);
 });
 
 function createFeatures(earthquakeData) {

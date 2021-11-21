@@ -14,7 +14,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: API_KEY
 }).addTo(myMap);
 
-// Use swtich function to get colors for different depths
+// Use switch function to get colors for different depths
 function getColor(depth)
 {
     switch(true)
@@ -38,6 +38,7 @@ function getColor(depth)
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(data => {
     console.log(data)
 
+    // Data point radius from magnitude, colors from getColor
     L.geoJson(data, {
         pointToLayer: (feature, latlng) => {
             return L.circleMarker(latlng, {

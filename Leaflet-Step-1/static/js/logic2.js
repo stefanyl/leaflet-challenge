@@ -1,8 +1,10 @@
+// Create a map object
 var myMap = L.map("map", {
     center : [40.7128, -74.0059],
     zoom: 4
 })
 
+// Add a tile layer and add to our map
 L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
@@ -12,7 +14,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: API_KEY
 }).addTo(myMap);
 
-
+// Use swtich function to get colors for different depths
 function getColor(depth)
 {
     switch(true)
@@ -31,6 +33,8 @@ function getColor(depth)
             return "#00f900"
     }
 }
+
+// Grab json. All Easthquakes from Last Week
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(data => {
     console.log(data)
 
@@ -44,6 +48,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
             
             })
         },
+        // Tooltip with the magnitude, location, & depth for each point
         onEachFeature : (feature, layer) => {
             layer.bindPopup(
                 "Magnitude: " + feature.properties.mag
@@ -53,6 +58,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
         }
     }).addTo(myMap)
 
+    // Set up the legend
     var legend = L.control({
         position: "bottomright"
     })
